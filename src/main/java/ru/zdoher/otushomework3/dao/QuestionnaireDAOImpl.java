@@ -1,14 +1,14 @@
 package ru.zdoher.otushomework3.dao;
 
 import com.opencsv.CSVReader;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import ru.zdoher.otushomework3.domain.Answer;
 import ru.zdoher.otushomework3.service.LocalizationService;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 
@@ -16,16 +16,13 @@ import java.util.*;
 public class QuestionnaireDAOImpl implements QuestionnaireDAO {
     private Map<String, List<Answer>> questions = new HashMap<>();
 
-    private LocalizationService localizationService;
+//    private LocalizationService localizationService;
 
-    @PostConstruct
-    public void init() throws IOException {
+    public QuestionnaireDAOImpl(LocalizationService localizationService, ResourceLoader resourceLoader) throws IOException {
+//        this.localizationService = localizationService;
 
-        File file = new File(Objects.requireNonNull(
-                getClass().getClassLoader().getResource(localizationService.getQuizFilename())).getFile()
-        );
-
-        CSVReader csvReader = new CSVReader(new FileReader(file));
+        Resource resource = resourceLoader.getResource(localizationService.getQuizFilename());
+        CSVReader csvReader = new CSVReader(new InputStreamReader(resource.getInputStream()));
         String[] nextRecord;
         while ((nextRecord = csvReader.readNext()) != null) {
             if(nextRecord.length >= 3) {
@@ -41,11 +38,6 @@ public class QuestionnaireDAOImpl implements QuestionnaireDAO {
                 questions.put(nextRecord[0], answerList);
             }
         }
-    }
-
-    public QuestionnaireDAOImpl(LocalizationService localizationService) {
-        this.localizationService = localizationService;
-
     }
 
 

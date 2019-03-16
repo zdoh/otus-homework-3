@@ -1,13 +1,12 @@
 package ru.zdoher.otushomework3.service;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
+import ru.zdoher.otushomework3.configuration.YamlProps;
 
 import java.util.Locale;
 
-@PropertySource("classpath:application.properties")
+
 @Service
 public class LocalizationServiceImpl implements LocalizationService {
 
@@ -17,12 +16,12 @@ public class LocalizationServiceImpl implements LocalizationService {
 
     private MessageSource ms;
 
-    public LocalizationServiceImpl(MessageSource ms,
-                                   @Value("${locale}") Locale locale,
-                                   @Value("${file}") String fileNameMes) {
+    //private YamlProps yamlProps;
+
+    public LocalizationServiceImpl(MessageSource ms, YamlProps yamlProps) {
         this.ms = ms;
-        this.locale = locale;
-        this.fileNameMes = locale + "_" + fileNameMes;
+        this.locale = new Locale(yamlProps.getLocale());
+        this.fileNameMes = locale + "_" + yamlProps.getTestfilename();
     }
 
 
