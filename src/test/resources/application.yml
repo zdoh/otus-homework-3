@@ -1,0 +1,6 @@
+config:
+  locale: fweq
+  possibleLocale:
+    - ru
+    - en
+  testfilename: japLanguageWordTest.csv
