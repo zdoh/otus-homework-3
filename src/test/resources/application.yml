@@ -1,0 +1,4 @@
+config:
+  # ru or en
+  locale: ru
+  testfilename: japLanguageWordTest.csv

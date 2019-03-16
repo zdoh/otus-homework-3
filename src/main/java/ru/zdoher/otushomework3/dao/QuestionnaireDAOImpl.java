@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import ru.zdoher.otushomework3.domain.Answer;
 import ru.zdoher.otushomework3.service.LocalizationService;
 
-import javax.annotation.PostConstruct;
 import java.io.*;
 import java.util.*;
 
@@ -16,10 +15,7 @@ import java.util.*;
 public class QuestionnaireDAOImpl implements QuestionnaireDAO {
     private Map<String, List<Answer>> questions = new HashMap<>();
 
-//    private LocalizationService localizationService;
-
     public QuestionnaireDAOImpl(LocalizationService localizationService, ResourceLoader resourceLoader) throws IOException {
-//        this.localizationService = localizationService;
 
         Resource resource = resourceLoader.getResource(localizationService.getQuizFilename());
         CSVReader csvReader = new CSVReader(new InputStreamReader(resource.getInputStream()));
