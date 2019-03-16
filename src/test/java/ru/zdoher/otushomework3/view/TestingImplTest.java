@@ -1,6 +1,7 @@
 package ru.zdoher.otushomework3.view;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 
-
+@DisplayName("Методы тестирования ")
 @SpringBootTest
 class TestingImplTest {
 
@@ -51,6 +52,7 @@ class TestingImplTest {
     }
 
     @Test
+    @DisplayName(" работает корректно при выборе одного ответа")
     void doTestAlwaysFirst() {
         when(consoleService.getString()).thenReturn("1");
         testing.doTest();
@@ -64,6 +66,7 @@ class TestingImplTest {
     }
 
     @Test
+    @DisplayName(" работает корректно при выборе другого ответа")
     void doTestAlwaysSecond() {
         when(consoleService.getString()).thenReturn("2");
         testing.doTest();
