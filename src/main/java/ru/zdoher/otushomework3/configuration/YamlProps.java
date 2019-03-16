@@ -1,10 +1,11 @@
 package ru.zdoher.otushomework3.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.Locale;
 
+@Component
 @ConfigurationProperties(prefix = "config")
 public class YamlProps {
     private Locale locale;
