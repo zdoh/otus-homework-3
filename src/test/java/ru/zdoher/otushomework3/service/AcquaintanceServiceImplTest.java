@@ -32,7 +32,6 @@ class AcquaintanceServiceImplTest {
     void makeAcquantance() {
         Profile profile = new Profile();
         when(consoleService.getString()).thenReturn("Name").thenReturn("Surname");
-        when(localizationService.getMessage(any())).thenReturn("a").thenReturn("b").thenReturn("c");
         acquaintanceService.makeAcquantance(profile);
 
         assertAll(

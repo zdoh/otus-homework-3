@@ -1,4 +1,6 @@
 config:
-  # ru or en
-  locale: ru
+  locale: fweq
+  possibleLocale:
+    - ru
+    - en
   testfilename: japLanguageWordTest.csv

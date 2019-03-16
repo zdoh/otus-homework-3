@@ -4,6 +4,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import ru.zdoher.otushomework3.configuration.YamlProps;
 
+import java.util.Arrays;
 import java.util.Locale;
 
 
@@ -16,11 +17,15 @@ public class LocalizationServiceImpl implements LocalizationService {
 
     private MessageSource ms;
 
-    //private YamlProps yamlProps;
-
     public LocalizationServiceImpl(MessageSource ms, YamlProps yamlProps) {
         this.ms = ms;
-        this.locale = new Locale(yamlProps.getLocale());
+
+        if(Arrays.asList(yamlProps.getPossibleLocale()).contains(yamlProps.getLocale().getLanguage())) {
+            this.locale = yamlProps.getLocale();
+        } else {
+            this.locale = new Locale(yamlProps.getPossibleLocale()[0]);
+        }
+
         this.fileNameMes = locale + "_" + yamlProps.getTestfilename();
     }
 

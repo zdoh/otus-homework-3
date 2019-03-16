@@ -92,5 +92,7 @@ public class TestingImpl implements Testing {
 
     }
 
-
+    public Profile getProfile() {
+        return profile;
+    }
 }
