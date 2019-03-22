@@ -13,7 +13,8 @@ import static org.mockito.Mockito.when;
 
 @DisplayName("Методы тестирования ")
 @SpringBootTest
-class TestingImplTest {
+class
+TestingImplTest {
 
     @Autowired
     private Testing testing;

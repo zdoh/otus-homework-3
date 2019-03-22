@@ -8,4 +8,6 @@ import java.util.Map;
 public interface QuestionnaireDAO {
 
     Map<String, List<Answer>> getQuestionList();
+
+    void rebaseHash();
 }

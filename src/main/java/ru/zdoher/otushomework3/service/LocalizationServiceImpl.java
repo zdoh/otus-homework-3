@@ -11,22 +11,16 @@ import java.util.Locale;
 @Service
 public class LocalizationServiceImpl implements LocalizationService {
 
-    private final Locale locale;
-
-    private String fileNameMes;
+    private Locale locale;
 
     private MessageSource ms;
 
+    private YamlProps yamlProps;
+
     public LocalizationServiceImpl(MessageSource ms, YamlProps yamlProps) {
         this.ms = ms;
-
-        if(Arrays.asList(yamlProps.getPossibleLocale()).contains(yamlProps.getLocale().getLanguage())) {
-            this.locale = yamlProps.getLocale();
-        } else {
-            this.locale = new Locale(yamlProps.getPossibleLocale()[0]);
-        }
-
-        this.fileNameMes = locale + "_" + yamlProps.getTestfilename();
+        this.yamlProps = yamlProps;
+        setLocale(yamlProps.getLocale().getLanguage());
     }
 
 
@@ -35,6 +29,20 @@ public class LocalizationServiceImpl implements LocalizationService {
     }
 
     public String getQuizFilename() {
-        return fileNameMes;
+        return locale + "_" + yamlProps.getTestfilename();
+    }
+
+    public String[] getPossibleLocale() {
+        return yamlProps.getPossibleLocale();
+    }
+
+    public boolean setLocale(String newLocale) {
+        if(Arrays.asList(yamlProps.getPossibleLocale()).contains(newLocale)) {
+            this.locale = new Locale(newLocale);
+            return true;
+        } else {
+            this.locale = new Locale(yamlProps.getPossibleLocale()[0]);
+            return false;
+        }
     }
 }
