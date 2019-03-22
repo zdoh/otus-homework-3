@@ -5,7 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import ru.zdoher.otushomework3.view.Testing;
 
-@Component
+//@Component
 public class Starter implements CommandLineRunner {
 
     private Testing testing;
